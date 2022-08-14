@@ -1,2 +1,2 @@
-C:\Users\Keven\PycharmProjects\Trabalho3_MP\arq_antigo\arquivo.pdf
-C:\Users\Keven\PycharmProjects\Trabalho3_MP\arq_novo\arquivo.pdf
+arq_antigo/arquivo.pdf
+arq_novo/arquivo.pdf
