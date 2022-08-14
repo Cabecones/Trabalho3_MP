@@ -1,2 +1,0 @@
-arq_antigo/arquivo.pdf
-arq_novo/arquivo.pdf
