@@ -116,5 +116,3 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
     else:
         print('Impossível')
 
-
-copy_file('casos_teste/caso8/hd/arquivo.txt', 'casos_teste/caso8/pendrive/arquivo.txt')
