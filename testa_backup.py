@@ -68,7 +68,7 @@ def test_caso7(capsys):
 
 
 # teste caso 8
-def test_caso8(capsys):
+def test_caso8():
     # testar quando o "faz_backup" é false e os arquivos tem o mesmo tempo de modificação
     assert backup.program('casos_teste/caso8/hd', 'casos_teste/caso8/pendrive', 'casos_teste/caso8/backupParm.txt',
                           'False') == 'Faz nada'

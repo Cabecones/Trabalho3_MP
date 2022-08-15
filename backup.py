@@ -61,7 +61,6 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                         # caso o hd seja mais recente copia o arquivo para pendrive
                         copy_file(path_hd + '/' + get_text(path_backup_parm), path_pendrive)
                         print('Arquivo copiado para o pendrive')
-                        return
                     elif is_same_time(path_hd + '/' + get_text(path_backup_parm),
                                       path_pendrive + '/' + get_text(path_backup_parm)):
                         return 'Faz nada'
@@ -71,7 +70,6 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                         path_backup_parm):
                         # caso o pendrive seja mais recente
                         print('Não foi possível fazer o backup')
-                        return
                     # verifica se os dois tem o mesmo tempo de modificacao
                     else:
                         print('Não foi possível fazer o backup')
@@ -97,7 +95,6 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                     # copia o arquivo para o pendrive
                     copy_file(path_hd + '/' + get_text(path_backup_parm), path_pendrive)
                     print('Arquivo copiado para o pendrive')
-                    return
                 else:
                     print('Não foi possível fazer o backup')
         else:
@@ -109,7 +106,6 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                 if has_file(path_pendrive, get_text(path_backup_parm)):
                     copy_file(path_pendrive + '/' + get_text(path_backup_parm), path_hd)
                     print('Arquivo copiado para o hd')
-                    return
                 else:
                     print('Não foi possível fazer o backup')
     else:
