@@ -114,4 +114,3 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                     print('Não foi possível fazer o backup')
     else:
         print('Impossível')
-
