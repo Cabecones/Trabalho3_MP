@@ -38,7 +38,12 @@ def get_text(path):
 
 # copia um arquivo para outro diretorio
 def copy_file(path1, path2):
-    shutil.copy(path1, path2)
+    shutil.copy2(path1, path2)
+
+
+# verificar se dois arquivos tem o mesmo tempo de modificacao
+def is_same_time(path1, path2):
+    return last_modified(path1) == last_modified(path2)
 
 
 def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
@@ -55,11 +60,10 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                         # copia o arquivo para pendrive
                         copy_file(path_hd + '/' + get_text(path_backup_parm), path_pendrive)
                         print('Arquivo copiado para o pendrive')
-                        # verifica se os dois tem o mesmo tempo de modificacao
-                        if last_modified(path_hd + '/' + get_text(path_backup_parm)) == last_modified(
-                                path_pendrive + '/' + get_text(
-                                    path_backup_parm)):
-                            return 'Faz nada'
+                    # verifica se os dois tem o mesmo tempo de modificacao
+                    elif is_same_time(path_hd + '/' + get_text(path_backup_parm),
+                                      path_pendrive + '/' + get_text(path_backup_parm)):
+                        return 'Faz nada'
                     else:
                         print('Não foi possível fazer o backup')
                 else:
@@ -69,10 +73,9 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                         path_backup_parm):
                         print('Não foi possível fazer o backup')
                         # verifica se os dois tem o mesmo tempo de modificacao
-                        if last_modified(path_hd + '/' + get_text(path_backup_parm)) == last_modified(
-                                path_pendrive + '/' + get_text(
-                                    path_backup_parm)):
-                            return 'Faz nada'
+                    elif is_same_time(path_hd + '/' + get_text(path_backup_parm),
+                                      path_pendrive + '/' + get_text(path_backup_parm)):
+                        return 'Faz nada'
                     else:
                         copy_file(path_pendrive + '/' + get_text(path_backup_parm), path_hd)
             else:
@@ -95,5 +98,6 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                     print('Não foi possível fazer o backup')
     else:
         print('Impossível')
+
 
 
