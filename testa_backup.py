@@ -24,7 +24,9 @@ def test_caso3(capsys):
     # testar no caso do arquivo do hd ser mais recente
     backup.program('casos_teste/caso3/hd', 'casos_teste/caso3/pendrive', 'casos_teste/caso3/backupParm.txt', 'True')
     captured = capsys.readouterr()
-    assert captured.out == "Arquivo copiado para o pendrive\n" or 'Não foi possível fazer o backup\n' and backup.is_same_time('casos_teste/caso3/hd/' + backup.get_text('casos_teste/caso3/backupParm.txt'), 'casos_teste/caso3/pendrive/' + backup.get_text('casos_teste/caso3/backupParm.txt')) == True
+    assert captured.out == "Arquivo copiado para o pendrive\n" or 'Não foi possível fazer o backup\n' and backup.\
+        is_same_time('casos_teste/caso3/hd/' + backup.get_text('casos_teste/caso3/backupParm.txt'),
+                     'casos_teste/caso3/pendrive/' + backup.get_text('casos_teste/caso3/backupParm.txt')) == True
     # "Não foi possível fazer o backup\n" é no caso de o teste já ter sido feito anteriormente
 
 
@@ -40,7 +42,10 @@ def test_caso5(capsys):
     # testar no caso arquivo do pendrive ser mais recente
     backup.program('casos_teste/caso5/hd', 'casos_teste/caso5/pendrive', 'casos_teste/caso5/backupParm.txt', 'True')
     captured = capsys.readouterr()
-    assert captured.out == 'Não foi possível fazer o backup\n' or backup.program('casos_teste/caso5/hd', 'casos_teste/caso5/pendrive', 'casos_teste/caso5/backupParm.txt', 'True') == 'Faz nada'
+    assert captured.out == 'Não foi possível fazer o backup\n' or backup.program('casos_teste/caso5/hd',
+                                                                                 'casos_teste/caso5/pendrive',
+                                                                                 'casos_teste/caso5/backupParm.txt',
+                                                                                 'True') == 'Faz nada'
 
 
 # teste caso 6
@@ -57,3 +62,10 @@ def test_caso7(capsys):
     backup.program('casos_teste/caso7/hd', 'casos_teste/caso7/pendrive', 'casos_teste/caso7/backupParm.txt', 'False')
     captured = capsys.readouterr()
     assert captured.out == 'Não foi possível fazer o backup\n'
+
+
+# teste caso 8
+def test_caso8(capsys):
+    # testar quando o "faz_backup" é false e os arquivos tem o mesmo tempo de modificação
+    assert backup.program('casos_teste/caso8/hd', 'casos_teste/caso8/pendrive', 'casos_teste/caso8/backupParm.txt',
+                          'False') == 'Faz nada'
