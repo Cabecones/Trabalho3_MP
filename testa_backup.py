@@ -101,3 +101,12 @@ def test_caso11(capsys):
     backup.program('casos_teste/caso11/hd', 'casos_teste/caso11/pendrive', 'casos_teste/caso11/backupParm.txt', 'False')
     captured = capsys.readouterr()
     assert captured.out == 'Não foi possível fazer o backup\n'
+
+
+# teste caso 12
+def test_caso12(capsys):
+    # testar quando o "faz_backup" é false e hd está vazio e pendrive contem o arquivo monitorado
+    backup.program('casos_teste/caso12/hd', 'casos_teste/caso12/pendrive', 'casos_teste/caso12/backupParm.txt', 'False')
+    captured = capsys.readouterr()
+    assert captured.out == 'Arquivo copiado para o hd\n' or backup.program('casos_teste/caso12/hd', 'casos_teste/caso12/pendrive', 'casos_teste/caso12/backupParm.txt', 'False') == 'Faz nada'
+
