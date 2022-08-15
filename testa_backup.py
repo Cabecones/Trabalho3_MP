@@ -97,3 +97,7 @@ def test_caso10(capsys):
 
 # teste caso 11
 def test_caso11(capsys):
+    # testar quando o "faz_backup" é false e hd e pendrive estão vazios
+    backup.program('casos_teste/caso11/hd', 'casos_teste/caso11/pendrive', 'casos_teste/caso11/backupParm.txt', 'False')
+    captured = capsys.readouterr()
+    assert captured.out == 'Não foi possível fazer o backup\n'
