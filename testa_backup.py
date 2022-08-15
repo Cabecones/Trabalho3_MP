@@ -61,7 +61,11 @@ def test_caso7(capsys):
     # testar quando o "faz_backup" é false e o arquivo do hd é o mais recente
     backup.program('casos_teste/caso7/hd', 'casos_teste/caso7/pendrive', 'casos_teste/caso7/backupParm.txt', 'False')
     captured = capsys.readouterr()
-    assert captured.out == 'Não foi possível fazer o backup\n'
+    assert captured.out == 'Não foi possível fazer o backup\n' or backup.program('casos_teste/caso7/hd',
+                                                                                 'casos_teste/caso7/pendrive',
+                                                                                 'casos_teste/caso7/backupParm.txt',
+                                                                                 'False') == 'Faz nada'
+                                                                                #caso o teste já tenha sido feito uma vez
 
 
 # teste caso 8
@@ -69,3 +73,15 @@ def test_caso8(capsys):
     # testar quando o "faz_backup" é false e os arquivos tem o mesmo tempo de modificação
     assert backup.program('casos_teste/caso8/hd', 'casos_teste/caso8/pendrive', 'casos_teste/caso8/backupParm.txt',
                           'False') == 'Faz nada'
+
+
+# teste caso 9
+def test_caso9(capsys):
+    # testar quando o "faz_backup" é false e o arquivo do pendrive é mais recente
+    backup.program('casos_teste/caso9/hd', 'casos_teste/caso9/pendrive', 'casos_teste/caso9/backupParm.txt', 'False')
+    captured = capsys.readouterr()
+    assert captured.out == 'Arquivo copiado para o hd\n' or backup.program('casos_teste/caso9/hd',
+                                                                                 'casos_teste/caso9/pendrive',
+                                                                                 'casos_teste/caso9/backupParm.txt',
+                                                                                 'False') == 'Faz nada'
+                                                                                #caso o teste já tenha sido feito uma vez

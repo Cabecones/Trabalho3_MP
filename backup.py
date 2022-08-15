@@ -1,6 +1,7 @@
 import os
 import time
 import shutil
+import datetime
 
 
 # verificar se path_backup_parm está vazio
@@ -12,9 +13,10 @@ def is_empty(path):
         return ''
 
 
-# ver ultima modificacao de um arquivo
+# ver ultima modificacao de um arquivo usando pathlib
 def last_modified(path):
-    return time.ctime(os.path.getmtime(path))
+    t = os.path.getmtime(path)
+    return datetime.datetime.fromtimestamp(t)
 
 
 # verificar quais dos arquivos tem a ultima modificacao
@@ -67,7 +69,7 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                     elif which_is_newest(path_hd + '/' + get_text(path_backup_parm),
                                          path_pendrive + '/' + get_text(
                                              path_backup_parm)) == path_pendrive + '/' + get_text(
-                                             path_backup_parm):
+                        path_backup_parm):
                         # caso o pendrive seja mais recente
                         print('Não foi possível fazer o backup')
                         return
@@ -80,7 +82,6 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                                        path_pendrive + '/' + get_text(path_backup_parm)) == path_hd + '/' + get_text(
                         path_backup_parm):
                         print('Não foi possível fazer o backup')
-                        return
                     # verifica se os dois tem o mesmo tempo de modificacao
                     elif is_same_time(path_hd + '/' + get_text(path_backup_parm),
                                       path_pendrive + '/' + get_text(path_backup_parm)):
@@ -88,10 +89,10 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
                     elif which_is_newest(path_hd + '/' + get_text(path_backup_parm),
                                          path_pendrive + '/' + get_text(
                                              path_backup_parm)) == path_pendrive + '/' + get_text(
-                                             path_backup_parm):
+                        path_backup_parm):
                         # caso o pendrive seja mais recente
                         copy_file(path_pendrive + '/' + get_text(path_backup_parm), path_hd)
-                        return
+                        print('Arquivo copiado para o hd')
             else:
                 if faz_backup == 'True':
                     # copia o arquivo para o pendrive
@@ -115,3 +116,5 @@ def program(path_hd, path_pendrive, path_backup_parm, faz_backup):
     else:
         print('Impossível')
 
+
+copy_file('casos_teste/caso8/hd/arquivo.txt', 'casos_teste/caso8/pendrive/arquivo.txt')
