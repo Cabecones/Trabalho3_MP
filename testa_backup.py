@@ -36,5 +36,24 @@ def test_caso4():
 
 
 # teste caso 5
-def test_caso5():
+def test_caso5(capsys):
     # testar no caso arquivo do pendrive ser mais recente
+    backup.program('casos_teste/caso5/hd', 'casos_teste/caso5/pendrive', 'casos_teste/caso5/backupParm.txt', 'True')
+    captured = capsys.readouterr()
+    assert captured.out == 'Não foi possível fazer o backup\n' or backup.program('casos_teste/caso5/hd', 'casos_teste/caso5/pendrive', 'casos_teste/caso5/backupParm.txt', 'True') == 'Faz nada'
+
+
+# teste caso 6
+def test_caso6(capsys):
+    # testar quando o "faz_backup" é False e só o hd contem o arquivo monitorado
+    backup.program('casos_teste/caso6/hd', 'casos_teste/caso6/pendrive', 'casos_teste/caso6/backupParm.txt', 'False')
+    captured = capsys.readouterr()
+    assert captured.out == 'Não foi possível fazer o backup\n'
+
+
+# teste caso 7
+def test_caso7(capsys):
+    # testar quando o "faz_backup" é false e o arquivo do hd é o mais recente
+    backup.program('casos_teste/caso7/hd', 'casos_teste/caso7/pendrive', 'casos_teste/caso7/backupParm.txt', 'False')
+    captured = capsys.readouterr()
+    assert captured.out == 'Não foi possível fazer o backup\n'
